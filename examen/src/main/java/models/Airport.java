@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "airports")
@@ -16,16 +18,26 @@ public class Airport {
     private double longitude;
     private double latitude;
 
-    public Airport() {
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id")
+    private Country country;
 
-    public Airport(String name, String icao_code, String iata_code, String status, double longitude, double latitude) {
+    @OneToMany(mappedBy = "airport", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Terminal> terminals;
+
+    public Airport(String name, String icao_code, String iata_code, String status, double longitude, double latitude, Country country) {
         this.name = name;
         this.icao_code = icao_code;
         this.iata_code = iata_code;
         this.status = status;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.country = country;
+        terminals = new ArrayList<>();
+    }
+
+    public Airport() {
+
     }
 
     public int getId() {
@@ -82,5 +94,21 @@ public class Airport {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public List<Terminal> getTerminals() {
+        return terminals;
+    }
+
+    public void setTerminals(List<Terminal> terminals) {
+        this.terminals = terminals;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

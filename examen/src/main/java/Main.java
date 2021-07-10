@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Country country = new Country("Ukraine");
+        Country country = new Country("Ukraine", "UA");
         Transaction tx1 = session.beginTransaction();
         session.save(country);
         tx1.commit();
@@ -18,7 +18,5 @@ public class Main {
         session.close();
 
         System.out.println("OK");
-
-
     }
 }
