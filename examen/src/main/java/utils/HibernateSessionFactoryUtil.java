@@ -17,7 +17,7 @@ public class HibernateSessionFactoryUtil {
         if (sessionFactory == null) {
             try {
 
-                Configuration configuration = new Configuration().configure("hibernate-postgres");
+                Configuration configuration = new Configuration().configure("hibernate-pg.cfg.xml");
                 RegisterClasses(configuration);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());

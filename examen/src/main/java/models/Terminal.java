@@ -1,18 +1,24 @@
 package models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "terminals")
 public class Terminal {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    // Many to one.
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "airport_id")
     private Airport airport;
 
     public Terminal() {
     }
 
-    public Terminal(int id, String name, Airport airport) {
-        this.id = id;
+    public Terminal(String name, Airport airport) {
         this.name = name;
         this.airport = airport;
     }

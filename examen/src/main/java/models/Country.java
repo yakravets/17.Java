@@ -1,12 +1,17 @@
 package models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "countries")
 public class Country {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    public Country(int id, String name) {
-        this.id = id;
+    public Country(String name) {
         this.name = name;
     }
 

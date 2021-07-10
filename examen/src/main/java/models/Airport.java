@@ -1,7 +1,13 @@
 package models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "airports")
 public class Airport {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String icao_code;
@@ -13,8 +19,7 @@ public class Airport {
     public Airport() {
     }
 
-    public Airport(int id, String name, String icao_code, String iata_code, String status, double longitude, double latitude) {
-        this.id = id;
+    public Airport(String name, String icao_code, String iata_code, String status, double longitude, double latitude) {
         this.name = name;
         this.icao_code = icao_code;
         this.iata_code = iata_code;
