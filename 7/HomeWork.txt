@@ -1,1 +1,0 @@
-Зробити Rest Controller на SpringBoot, який буде працювати із БД.
